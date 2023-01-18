@@ -1,3 +1,2 @@
 newmtl FaceTexture
 map_Kd texture3.jpg
-disp ./results/obj_model_normals.png
