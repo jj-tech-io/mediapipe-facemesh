@@ -1,0 +1,3 @@
+newmtl FaceTexture
+map_Kd texture_new2.png
+disp C:\Users\joeli\OneDrive\Documents\GitHub\mediapipe-facemesh\results\obj_model_new2_normals.png

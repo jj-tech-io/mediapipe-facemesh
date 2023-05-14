@@ -1,5 +1,6 @@
+#%%
 import cv2
-import mediapipe as mp
+import joel3d as mp
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
@@ -30,7 +31,7 @@ import pprint
 from matplotlib import pyplot as plt
 import skimage
 import cv2
-import mediapipe as mp
+import joel3d as mp
 from mediapipe.python.solutions import selfie_segmentation, drawing_utils, face_mesh, face_detection
 import matplotlib.pyplot as plt
 import numpy as np
@@ -41,15 +42,8 @@ mp_face_detection = mp.solutions.face_detection
 mp_drawing = mp.solutions.drawing_utils
 mp_pose = mp.solutions.pose
 
-im_path = r"/Users/joeljohnson/Desktop/Joel/data/Face_Segments/img/060038_4_028466_MALE_19.jpg"
-# im_path = r"/Users/joeljohnson/Desktop/Joel/data/Face_Segments/img/060038_4_028466_MALE_19.jpg"
-# im_path = r"/Users/joeljohnson/Desktop/Joel/data/Face_Segments/img/060002_4_028450_FEMALE_30.jpg"
-# im_path = r"/Users/joeljohnson/Desktop/Joel/mediapipe-facemesh/data/gakki.jpg"
-# im_path = r"/Users/joeljohnson/Desktop/Joel/mediapipe-facemesh/data/Screenshot 2023-01-30 at 5.34.46 PM.png"
-im_path =r"/Users/joeljohnson/Desktop/Joel/mediapipe-facemesh/results/Screenshot 2023-01-25 at 4.37.16 PM.png"
-im_path =r"/Users/joeljohnson/Desktop/Joel/data/Face_Segments/img/060037_4_028465_FEMALE_23.jpg"
-# im_path =r"/Users/joeljohnson/Desktop/Joel/mediapipe-facemesh/results/Head_02_Albedo.png"
-# im_path = r"/Users/joeljohnson/Desktop/Joel/mediapipe-facemesh/results/texture.jpg"
+im_path = r"C:\Users\joeli\OneDrive\Documents\GitHub\mediapipe-facemesh\data\gakki.jpg"
+
 
 image = cv2.imread(im_path)
 
@@ -383,3 +377,4 @@ if __name__ == "__main__":
     axs[0].imshow(cropped_image)
     axs[1].imshow(colour_bar)
     plt.show()
+# %%
