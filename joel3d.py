@@ -163,6 +163,8 @@ def write_obj(obj_name,
                         # (out_normal_map * 255).astype(np.uint8)[:, :, ::-1]
                         normal_map
                     )
+            #save texture, obj, uv 
+            
             skimage.io.imsave(texture_name, texture)
 
 def normalize_keypoints(keypoints3d):
@@ -225,7 +227,7 @@ if __name__ == "__main__":
     uv_path = "./data/uv_map.json" #taken from https://github.com/spite/FaceMeshFaceGeometry/blob/353ee557bec1c8b55a5e46daf785b57df819812c/js/geometry.js
     uv_map_dict = json.load(open(uv_path))
     uv_map = np.array([ (uv_map_dict["u"][str(i)],uv_map_dict["v"][str(i)]) for i in range(468)])
-    img_path = r"C:\Users\joeli\Dropbox\AE_InputModels\quick\m141.png"
+    img_path = r"C:\Users\joeli\OneDrive\Documents\GitHub\mediapipe-facemesh\images\neutral.jpg"
     img_ori = skimage.io.imread(img_path)
     # imshow(img_ori)
     img = img_ori
@@ -273,8 +275,10 @@ if __name__ == "__main__":
     vertices = normalize_keypoints(keypoints3d)
 
     # borrowed from https://github.com/YadiraF/PRNet/blob/master/utils/write.py
-    obj_name =  r"C:\Users\joeli\OneDrive\Documents\GitHub\mediapipe-facemesh\results\obj_model_new2.obj"
-    texture_name = r"C:\Users\joeli\OneDrive\Documents\GitHub\mediapipe-facemesh\results\texture_new2.png"
+    path = r"C:\Users\joeli\OneDrive\Documents\GitHub\mediapipe-facemesh\images\neutral"
+    obj_name =  os.path.join(path, "neutral.obj")
+    texture_name = os.path.join(path, "neutral.png")
+    
     # obj_name2 = "/Users/joeljohnson/Desktop/mediapipe-facemesh/data/head_template.obj"
     write_obj(obj_name,
                 vertices,
