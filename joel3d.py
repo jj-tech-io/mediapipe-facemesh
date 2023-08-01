@@ -1,29 +1,33 @@
 #%%
+
 import os
 import matplotlib.pyplot as plt
 import os
 import json
 import cv2
 import numpy as np
-import skimage
+# import skimage
 from skimage.transform import PiecewiseAffineTransform, warp
 import PIL
 import skimage
 from skimage.transform import PiecewiseAffineTransform, warp
 import mediapipe as mp
 import os,argparse,uuid
-import dlib,cv2,filetype
+import cv2
+
+import dlib
+
 import numpy as np
-from imutils import face_utils
+# from imutils import face_utils
 import config
-import webcolors, filetype
+# import webcolors, filetype
 from sklearn.cluster import KMeans
 from collections import Counter
 from PIL import Image, ImageDraw
 import tempfile
 import os
 import tempfile
-from vtkplotter import load, show
+# from vtkplotter import load, show
 import sys
 
 def imshow(img):
@@ -227,7 +231,8 @@ if __name__ == "__main__":
     uv_path = "./data/uv_map.json" #taken from https://github.com/spite/FaceMeshFaceGeometry/blob/353ee557bec1c8b55a5e46daf785b57df819812c/js/geometry.js
     uv_map_dict = json.load(open(uv_path))
     uv_map = np.array([ (uv_map_dict["u"][str(i)],uv_map_dict["v"][str(i)]) for i in range(468)])
-    img_path = r"C:\Users\joeli\OneDrive\Documents\GitHub\mediapipe-facemesh\images\neutral.jpg"
+    # img_path = r"C:\Users\joeli\OneDrive\Documents\GitHub\mediapipe-facemesh\images\neutral.jpg"
+    img_path = r"images/neutral.jpg"
     img_ori = skimage.io.imread(img_path)
     # imshow(img_ori)
     img = img_ori
@@ -264,7 +269,7 @@ if __name__ == "__main__":
     # plt.show()
 
     keypoints3d = np.array([(point.x,point.y,point.z) for point in face_landmarks.landmark[0:468]])
-    obj_filename = r"C:\Users\joeli\OneDrive\Documents\GitHub\mediapipe-facemesh\data\canonical_face_model.obj"
+    obj_filename = r"data/canonical_face_model.obj"
     # obj_filename = "/Users/joeljohnson/Desktop/mediapipe-facemesh/data/head_template.obj"
     verts,uvcoords,faces,uv_faces = load_obj(obj_filename)
 
@@ -275,7 +280,7 @@ if __name__ == "__main__":
     vertices = normalize_keypoints(keypoints3d)
 
     # borrowed from https://github.com/YadiraF/PRNet/blob/master/utils/write.py
-    path = r"C:\Users\joeli\OneDrive\Documents\GitHub\mediapipe-facemesh\images\neutral"
+    path = r"images/"
     obj_name =  os.path.join(path, "neutral.obj")
     texture_name = os.path.join(path, "neutral.png")
     
