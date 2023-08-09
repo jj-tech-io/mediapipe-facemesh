@@ -1,9 +1,10 @@
 from scipy.spatial import Delaunay
 import cv2
 import numpy as np
-import cv2
 import mediapipe as mp
-import numpy as np
+import skimage
+from mediapipe.python.solutions import drawing_utils as mp_drawing
+from mediapipe.python.solutions import face_mesh as mp_face_mesh
 import matplotlib.pyplot as plt
 
 def get_landmarks(image):
@@ -62,8 +63,8 @@ def warp_image(image1, image2, landmarks1, landmarks2):
 
 image1 = cv2.imread(r"1_neutral.jpg")
 image2 = cv2.imread(r"images/models_4k/m32.png")
-WIDTH = 512
-HEIGHT = 512
+WIDTH = 2048
+HEIGHT = 2048
 image2 = cv2.resize(image2, (WIDTH, HEIGHT))
 image1 = cv2.resize(image1, (WIDTH, HEIGHT))
 
@@ -73,10 +74,17 @@ landmarks2 = get_landmarks(image2)
 # Warp image1 to align with image2
 warped_image1 = warp_image(image1, image2, landmarks1, landmarks2)
 
+warped_landmarks1 = get_landmarks(warped_image1)
+
+plt.imshow(cv2.cvtColor(image1, cv2.COLOR_BGR2RGB))
+plt.title("Source image")
+plt.show()
 plt.imshow(cv2.cvtColor(warped_image1, cv2.COLOR_BGR2RGB))
+plt.title("Warped image")
 plt.show()
 
 plt.imshow(cv2.cvtColor(image2, cv2.COLOR_BGR2RGB))
+plt.title("Target image")
 plt.show()
 
 #plot 1 on top of 2 with alpha 0.5
@@ -84,4 +92,10 @@ alpha = 0.5
 beta = (1.0 - alpha)
 dst = cv2.addWeighted(warped_image1, alpha, image2, beta, 0.0)
 plt.imshow(cv2.cvtColor(dst, cv2.COLOR_BGR2RGB))
+plt.title("Overlay")
+plt.show()
+
+unwarped_image = warp_image(warped_image1, image1, warped_landmarks1, landmarks1)
+plt.imshow(cv2.cvtColor(unwarped_image, cv2.COLOR_BGR2RGB))
+plt.title("Unwarped image")
 plt.show()

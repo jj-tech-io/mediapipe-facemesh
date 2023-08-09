@@ -1,0 +1,3 @@
+newmtl FaceTexture
+map_Kd 43_neutral.png
+disp /Users/joeljohnson/Documents/Encoder_Decoder/mediapipe-facemesh/emotions/objects/43_neutral_normals.png
